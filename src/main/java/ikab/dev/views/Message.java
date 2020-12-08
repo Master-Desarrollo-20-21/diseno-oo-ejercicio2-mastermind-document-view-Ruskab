@@ -11,6 +11,7 @@ enum Message {
     WIN_MESSAGE("You've won!!! ;-)"),
     LOST_MESSAGE("You've lost!!! :-("),
     WRONG_PROPOSED_COMBINATION_LENGTH("Wrong proposed combination length"),
+    DUPLICATE_PROPOSED_COMBINATION_COLORS("Duplicate colors"),
     WRONG_PROPOSED_COMBINATION_COLORS("Wrong colors, they must be: rbygop"),
     RESUME("RESUME? (y/n): ");
 
