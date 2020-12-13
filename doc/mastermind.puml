@@ -1,0 +1,86 @@
+@startuml
+skinparam {
+    BoundaryBackgroundColor #629EF9
+    BoundaryBorderColor black
+    BoundaryFontSize 12
+    BoundarySize 10
+    ControlBackgroundColor #b5bd68
+    ControlBorderColor #718c00
+    EntityBackgroundColor #F2AC4E
+    EntityBorderColor black
+}
+
+abstract class Mastermind
+class ConsoleMastermind
+class GraphicMastermind
+
+package models {
+class Game
+class Combination
+class SecretCombination
+class ProposedCombination
+Enum Color
+class Attempt
+
+}
+package utils{
+class Console
+}
+
+
+
+package views {
+
+    class ErrorMessage
+    class Message
+    class View
+    class GraphicView
+    class ConsoleView
+
+    package console{
+        class ProposedCombinationView
+        class ResumeView
+        class GameView
+}
+
+
+    package graphics {
+
+    }
+
+}
+
+Mastermind <|-- ConsoleMastermind
+Mastermind <|-- GraphicMastermind
+View <|-- ConsoleView
+View <|-- GraphicView
+Mastermind *--- Game
+Mastermind *--- View
+View ---> Game
+ConsoleMastermind .[#Gray].> ConsoleView
+GraphicMastermind .[#Gray].> GraphicView
+ConsoleView *-- GameView
+ConsoleView *-- ResumeView
+GameView *-- ProposedCombinationView
+ResumeView .[#Gray].> Console
+GameView .[#Gray].> Console
+ProposedCombinationView .[#Gray].> Console
+ProposedCombinationView .[#Gray].> ProposedCombination
+ProposedCombinationView .[#Gray].> Color
+GameView .[#Gray].> ProposedCombination
+GameView .[#Gray].> Attempt
+
+Combination <|-- ProposedCombination
+Combination <|-- SecretCombination
+Attempt o-- ProposedCombination
+Attempt o-- SecretCombination
+Combination *-- "*" Color
+Game *-- SecretCombination
+Game .[#Gray].> ProposedCombination
+Game *-- "*" Attempt : playedAttempts
+Game *-- Attempt : currentAttempt
+ProposedCombinationView .[#Gray].> ErrorMessage
+GameView ..[#Gray].> Message
+ResumeView ..[#Gray].> Message
+GraphicView *-- graphics
+@enduml

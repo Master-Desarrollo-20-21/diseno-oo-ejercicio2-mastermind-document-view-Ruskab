@@ -1,4 +1,4 @@
-package ikab.dev.models;
+package ikab.dev.mastermind.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +7,20 @@ public class Game {
 
     private final SecretCombination secretCombination;
     private Attempt currentAttempt;
-    private List<Attempt> proposedAttempts;
+    private final List<Attempt> playedAttempts;
 
     public Game() {
-        proposedAttempts = new ArrayList<>();
+        playedAttempts = new ArrayList<>();
         secretCombination = new SecretCombination();
     }
 
     public void playCombination(ProposedCombination proposedCombination) {
         currentAttempt = new Attempt(proposedCombination, secretCombination);
-        proposedAttempts.add(currentAttempt);
+        playedAttempts.add(currentAttempt);
     }
 
     public boolean isContinuePlaying() {
-        return proposedAttempts.size() < 10 && !currentAttempt.isWinnerAttempt();
+        return playedAttempts.size() < 10 && !currentAttempt.isWinnerAttempt();
     }
 
     public boolean isWinnerGame() {
@@ -28,10 +28,10 @@ public class Game {
     }
 
     public int getAttemptsCount() {
-        return proposedAttempts.size();
+        return playedAttempts.size();
     }
 
-    public List<Attempt> getProposedAttempts() {
-        return proposedAttempts;
+    public List<Attempt> getPlayedAttempts() {
+        return playedAttempts;
     }
 }

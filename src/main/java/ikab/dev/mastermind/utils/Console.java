@@ -1,4 +1,4 @@
-package ikab.dev.utils;
+package ikab.dev.mastermind.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 

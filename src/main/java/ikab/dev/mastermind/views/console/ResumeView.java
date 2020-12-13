@@ -1,6 +1,7 @@
-package ikab.dev.views;
+package ikab.dev.mastermind.views.console;
 
-import ikab.dev.utils.Console;
+import ikab.dev.mastermind.utils.Console;
+import ikab.dev.mastermind.views.Message;
 
 public class ResumeView {
 

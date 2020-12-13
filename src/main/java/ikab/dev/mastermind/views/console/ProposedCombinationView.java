@@ -1,13 +1,14 @@
-package ikab.dev.views;
+package ikab.dev.mastermind.views.console;
 
-import ikab.dev.models.Color;
-import ikab.dev.models.ProposedCombination;
-import ikab.dev.utils.Console;
+import ikab.dev.mastermind.models.Color;
+import ikab.dev.mastermind.models.ProposedCombination;
+import ikab.dev.mastermind.utils.Console;
+import ikab.dev.mastermind.views.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static ikab.dev.views.Message.PROPOSE_COMBINATION;
+import static ikab.dev.mastermind.views.Message.PROPOSE_COMBINATION;
 
 public class ProposedCombinationView {
 
@@ -30,15 +31,15 @@ public class ProposedCombinationView {
             return false;
         }
         if (proposedCombinationCode.length() != ProposedCombination.COMBINATION_SIZE) {
-            Console.getInstance().writeln(Message.WRONG_PROPOSED_COMBINATION_LENGTH.getMessage());
+            Console.getInstance().writeln(ErrorMessage.WRONG_PROPOSED_COMBINATION_LENGTH.getMessage());
             return false;
         }
         if (!isValidColors(proposedCombinationCode)) {
-            Console.getInstance().writeln(Message.WRONG_PROPOSED_COMBINATION_COLORS.getMessage());
+            Console.getInstance().writeln(ErrorMessage.WRONG_PROPOSED_COMBINATION_COLORS.getMessage());
             return false;
         }
-        if (!duplicateColors(proposedCombinationCode)) {
-            Console.getInstance().writeln(Message.DUPLICATE_PROPOSED_COMBINATION_COLORS.getMessage());
+        if (duplicateColors(proposedCombinationCode)) {
+            Console.getInstance().writeln(ErrorMessage.DUPLICATE_PROPOSED_COMBINATION_COLORS.getMessage());
             return false;
         }
         return true;

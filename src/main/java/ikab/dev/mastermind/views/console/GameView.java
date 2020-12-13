@@ -1,10 +1,11 @@
-package ikab.dev.views;
+package ikab.dev.mastermind.views.console;
 
 
-import ikab.dev.models.Attempt;
-import ikab.dev.models.Game;
-import ikab.dev.models.ProposedCombination;
-import ikab.dev.utils.Console;
+import ikab.dev.mastermind.models.Attempt;
+import ikab.dev.mastermind.models.Game;
+import ikab.dev.mastermind.models.ProposedCombination;
+import ikab.dev.mastermind.utils.Console;
+import ikab.dev.mastermind.views.Message;
 
 
 public class GameView {
@@ -17,12 +18,13 @@ public class GameView {
         this.proposedCombinationView = new ProposedCombinationView();
     }
 
-    void interact() {
+    public void interact() {
         do {
             Console.getInstance().writeln(String.format(Message.ATTEMPTS_COUNT.getMessage(), game.getAttemptsCount()));
             Console.getInstance().writeln(Message.SECRET_COMBINATION_HIDDEN.getMessage());
-            for (Attempt attempt : game.getProposedAttempts()) {
-                Console.getInstance().writeln(String.format(Message.ATTEMPT.getMessage(), attempt.getProposedCombinationCode(), attempt.getBlacks(), attempt.getWhites()));
+            for (Attempt attempt : game.getPlayedAttempts()) {
+                Console.getInstance()
+                        .writeln(String.format(Message.ATTEMPT.getMessage(), attempt.getProposedCombinationCode(), attempt.getBlacks(), attempt.getWhites()));
             }
             ProposedCombination proposedCombination = proposedCombinationView.readProposedCombination();
             game.playCombination(proposedCombination);
@@ -35,6 +37,6 @@ public class GameView {
     }
 
     public boolean isEndGame() {
-        return game.isContinuePlaying();
+        return !game.isContinuePlaying();
     }
 }

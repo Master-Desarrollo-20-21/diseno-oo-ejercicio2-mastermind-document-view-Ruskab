@@ -1,9 +1,9 @@
-package ikab.dev.models;
+package ikab.dev.mastermind.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Combination {
+public abstract class Combination {
 
     public static final int COMBINATION_SIZE = 4;
 

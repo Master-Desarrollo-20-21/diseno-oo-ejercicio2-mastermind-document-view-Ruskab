@@ -1,4 +1,4 @@
-package ikab.dev.models;
+package ikab.dev.mastermind.models;
 
 public class ProposedCombination extends Combination {
 
